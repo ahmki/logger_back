@@ -5,6 +5,8 @@ const config = require('./utils/config');
 
 const loginRouter = require('./controllers/login');
 const userRouter = require('./controllers/users');
+const logRouter = require('./controllers/logs');
+
 const db = require('./utils/db');
 
 const app = express();
@@ -18,7 +20,8 @@ app.get('/ping', (_req, res) => {
   res.send('pong');
 });
 
-app.use('/api/user', userRouter);
+app.use('/api/logs', logRouter);
+app.use('/api/users', userRouter);
 app.use('/api/login', loginRouter);
 
 const start = async () => {

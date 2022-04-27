@@ -1,12 +1,16 @@
 const express = require('express');
-const bcrypt = require('bcrypt');
-const { User } = require('../models');
+const { User, Log } = require('../models');
 
 const router = express.Router();
 
 router.get('/', async (_req, res) => {
   console.log('get users');
-  const users = await User.findAll();
+  const users = await User.findAll({
+    include: {
+      model: Log,
+      attributes: { exclude: ['userId'] }
+    }
+  });
   res.json(users);
 });
 
