@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
 
       res.status(200).send({
         token, username: user.username
-      });    
+      });
     }
     else {
       return res.status(401).json({
@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
       error: 'invalid username'
     });
   }
- 
+
 });
 
 module.exports = router;

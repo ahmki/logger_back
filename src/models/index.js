@@ -7,7 +7,7 @@ Log.belongsTo(User);
 Log.sync({ alter: true });
 User.sync({ alter: true });
 
-module.exports = { 
+module.exports = {
   User,
   Log
 };

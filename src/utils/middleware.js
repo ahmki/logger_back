@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const { Log } = require('../models');
 const { SECRET } = require('./config');
 
 const tokenExtractor = (req, res, next) => {
@@ -17,8 +18,14 @@ const tokenExtractor = (req, res, next) => {
     return res.status(401).json({ error: 'token missing' });
   }
   next();
-}
+};
+
+const findLogByPk = async (req, res, next) => {
+  req.entry = await Log.findByPk(req.params.id);
+  next();
+};
 
 module.exports = {
-  tokenExtractor
-}
+  tokenExtractor,
+  findLogByPk
+};

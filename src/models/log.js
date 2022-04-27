@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const { sequelize } = require('../utils/db');
 
-class Log extends Model {};
+class Log extends Model {}
 
 Log.init({
   id: {
