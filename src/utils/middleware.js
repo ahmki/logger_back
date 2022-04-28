@@ -25,7 +25,8 @@ const findLogByPk = async (req, res, next) => {
   next();
 };
 
+
 module.exports = {
   tokenExtractor,
-  findLogByPk
+  findLogByPk,
 };

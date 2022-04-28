@@ -14,6 +14,25 @@ router.get('/', async (_req, res) => {
   res.json(users);
 });
 
+router.get('/:id', async (req, res) => {
+  const user = await User.findByPk(req.params.id, {
+    attributes: {
+      exclude: ['password']
+    },
+    include: {
+      model: Log,
+      attributes: { exclude: ['userId'] }
+    },
+  });
+
+  if(user) {
+    res.json(user);
+  }
+  else {
+    res.status(404).json({ error: 'invalid user id' });
+  }
+});
+
 router.post('/', async (req, res) => {
   try {
     const user = await User.create(req.body);
