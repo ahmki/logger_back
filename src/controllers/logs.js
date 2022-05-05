@@ -22,7 +22,7 @@ router.post('/', tokenExtractor, async (req, res) => {
     res.json(log);
   }
   catch(err) {
-    return res.status(400).json({ error: 'invalid token' });
+    return res.status(400).json({ error: 'couldnt insert into database!' });
   }
 });
 

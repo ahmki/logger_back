@@ -5,8 +5,6 @@ const { OMDB_API_KEY, OMDB_API_URL } = require('../utils/config');
 const router = express.Router();
 
 router.get('/search/:term', async (req, res) => {
-  /* RegEx to replace spaces with + symbols for the API */
-  console.log('req.body', req.params.term);
   // const searchTermFixed = req.body.searchTerm.replace(/ /g, '+');
 
   try {

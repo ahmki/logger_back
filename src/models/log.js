@@ -17,7 +17,7 @@ Log.init({
     type: DataTypes.TEXT
   },
   review: {
-    type: DataTypes.STRING
+    type: DataTypes.TEXT
   },
   date: {
     type: DataTypes.DATE
