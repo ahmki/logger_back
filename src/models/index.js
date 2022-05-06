@@ -4,8 +4,8 @@ const { Log } = require('./log');
 User.hasMany(Log);
 Log.belongsTo(User);
 
-Log.sync({ alter: true });
-User.sync({ alter: true });
+Log.sync();
+User.sync();
 
 module.exports = {
   User,
