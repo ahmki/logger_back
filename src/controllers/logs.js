@@ -35,4 +35,26 @@ router.get('/:id', findLogByPk, async (req, res) => {
   }
 });
 
+router.delete('/:id', findLogByPk, async (req, res) => {
+  if (req.entry) {
+    await req.entry.destroy();
+    res.status(204).end();
+  }
+  else {
+    res.status(404).json({ error: 'invalid id' });
+  }
+});
+
+router.put('/:id', findLogByPk, async (req, res) => {
+  if (req.entry) {
+    req.entry.review = req.body.review;
+
+    await req.entry.save();
+    res.json(req.entry);
+  }
+  else {
+    res.status(404).json({ error: 'invalid id' });
+  }
+});
+
 module.exports = router;
