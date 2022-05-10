@@ -16,7 +16,18 @@ router.get('/search/:term', async (req, res) => {
   catch (err) {
     console.log(err);
   }
+});
 
+router.get('/:id', async (req, res) => {
+  try {
+    const result = await axios.get(
+      `${OMDB_API_URL}?i=${req.params.id}&apikey=${OMDB_API_KEY}`
+    );
+    res.send(result.data);
+  }
+  catch(err) {
+    console.log(err);
+  }
 });
 
 module.exports = router;
