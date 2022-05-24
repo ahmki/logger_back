@@ -19,6 +19,9 @@ Log.init({
   review: {
     type: DataTypes.TEXT
   },
+  rating: {
+    type: DataTypes.TEXT
+  },
   date: {
     type: DataTypes.DATE
   }

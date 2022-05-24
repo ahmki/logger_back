@@ -19,6 +19,7 @@ router.get('/search/:term', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
+
   try {
     const result = await axios.get(
       `${OMDB_API_URL}?i=${req.params.id}&apikey=${OMDB_API_KEY}`
