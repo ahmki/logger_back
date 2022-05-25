@@ -11,18 +11,27 @@ const sequelize = new Sequelize(DATABASE_URL, {
   },
 });
 
+const migratorConf = new Umzug({
+  migrations: {
+    glob: 'migrations/*.js',
+  },
+  storage: new SequelizeStorage({ sequelize, tableName: 'migrations' }),
+  context: sequelize.getQueryInterface(),
+  logger: console,
+});
+
 const runMigrations = async () => {
-  const migrator = new Umzug({
-    migrations: {
-      glob: 'migrations/*.js',
-    },
-    storage: new SequelizeStorage({ sequelize, tableName: 'migrations' }),    context: sequelize.getQueryInterface(),
-    logger: console,
-  });
+  const migrator = new Umzug(migratorConf);
   const migrations = await migrator.up();
   console.log('Migrations up to date', {
     files: migrations.map((mig) => mig.name),
   });
+};
+
+const rollbackMigration = async () => {
+  await sequelize.authenticate();
+  const migrator = new Umzug(migratorConf);
+  await migrator.down();
 };
 
 const connectToDb = async () => {
@@ -35,4 +44,4 @@ const connectToDb = async () => {
   }
 };
 
-module.exports = { sequelize, connectToDb };
+module.exports = { sequelize, connectToDb, rollbackMigration };
