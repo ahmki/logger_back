@@ -20,8 +20,7 @@ Log.init({
     type: DataTypes.TEXT
   },
   rating: {
-    type: DataTypes.TEXT,
-    defaultValue: false,
+    type: DataTypes.INTEGER,
     allowNull: true
   },
   date: {
